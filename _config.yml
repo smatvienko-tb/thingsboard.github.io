@@ -73,7 +73,7 @@ collections:
   careers:
     output: true
 
-cdn_url: https://img.thingsboard.io
+# cdn_url: https://img.thingsboard.io
 
 images_cdn:
   base_cdn_url: https:img.thingsboard.io

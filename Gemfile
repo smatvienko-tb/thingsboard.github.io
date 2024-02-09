@@ -20,3 +20,5 @@ gem "jekyll-github-metadata", "2.13.0"
 gem "listen", "3.0.6"
 gem "activesupport", "5.2.8.1"
 gem 'webrick', "1.8.1"
+gem 'jekyll-images-cdn', github: 'smatvienko-tb/jekyll-images-cdn', branch: 'jekyll-3.9.2'
+# gem 'jekyll-images-cdn', github: 'fastruby/jekyll-images-cdn', branch: 'main'

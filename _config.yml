@@ -73,6 +73,11 @@ collections:
   careers:
     output: true
 
+cdn_url: https://img.thingsboard.io
+
+images_cdn:
+  base_cdn_url: https:img.thingsboard.io
+
 release:
   branch: release-3.6
   branch_major_next: develop/3.7

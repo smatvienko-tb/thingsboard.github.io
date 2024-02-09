@@ -30,6 +30,21 @@ Install Ruby **3.0.x**. If you're on Ubuntu, run this commands:
     sudo gem install jekyll bundler
 </pre>
 
+<p>To use RVM package for Ubuntu (if you're on Ubuntu 22.04 LTS), run these commands:</p>
+<pre>
+sudo apt-get install software-properties-common
+sudo apt-add-repository -y ppa:rael-gc/rvm
+sudo apt-get update
+sudo apt-get install rvm
+sudo usermod -a -G rvm $USER
+echo 'source "/etc/profile.d/rvm.sh"' >> ~/.bashrc
+# restart terminal or relogin or reboot
+# rvm install 2.7.7
+sudo -u smatvienko bash -c 'source "/etc/profile.d/rvm.sh" && rvm install 2.7.7'
+ru
+</pre>
+
+
 </details>
 
 * If you're on a Mac, follow [these instructions](https://gorails.com/setup/osx/) and choose a Ruby version (**3.0.x** or **2.7.6**).  

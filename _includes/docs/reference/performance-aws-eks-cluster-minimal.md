@@ -644,14 +644,14 @@ helm upgrade --install cassandra bitnami/cassandra \
   --set cluster.name=cassandra \
   --set cluster.datacenter=datacenter1 \
   --set cluster.seedCount=3 \
-  --set jvm.maxHeapSize=2048M \
-  --set jvm.newHeapSize=400M \
+  --set jvm.maxHeapSize=700M \
+  --set jvm.newHeapSize=200M \
   --set resources.requests.cpu=300m \
-  --set resources.requests.memory=4Gi \
-  --set resources.limits.cpu=3000m \
-  --set resources.limits.memory=4Gi \
-  --set metrics.enabled=true \
-  --set metrics.serviceMonitor.enabled=true \
+  --set resources.requests.memory=1500Mi \
+  --set resources.limits.cpu=6000m \
+  --set resources.limits.memory=2000Mi \
+  --set metrics.enabled=false \
+  --set metrics.serviceMonitor.enabled=false \
   --set metrics.serviceMonitor.namespace=thingsboard \
   --set podAntiAffinityPreset=hard \
   --set pdb.create=true \
@@ -671,7 +671,7 @@ helm install redis bitnami/redis-cluster \
   --set redis.useAOFPersistence=no \
   --set fullnameOverride=redis \
   --set redis.resources.requests.cpu=100m \
-  --set redis.resources.requests.memory=1Gi \
+  --set redis.resources.requests.memory=500Mi \
   --set redis.resources.limits.cpu=1000m \
   --set redis.resources.limits.memory=1Gi \
   --set redis.podAntiAffinityPreset=soft \
@@ -718,29 +718,30 @@ helm install postgresql bitnami/postgresql-ha \
   --set fullnameOverride=postgresql \
   --set postgresql.database=thingsboard \
   --set postgresql.replicaCount=3 \
-  --set postgresql.maxConnections=250 \
+  --set postgresql.maxConnections=500 \
   --set postgresql.sharedPreloadLibraries='pgaudit\,repmgr\,pg_stat_statements' \
   --set pgpool.replicaCount=1 \
-  --set pgpool.numInitChildren=200 \
+  --set pgpool.numInitChildren=100 \
   --set pgpool.useLoadBalancing=false \
   --set persistence.size=30Gi \
   --set postgresqlImage.debug=true \
+  --set volumePermissions.enabled=true \
   --set pgpoolImage.debug=true \
   --set postgresql.resources.requests.cpu=300m \
-  --set postgresql.resources.requests.memory=4Gi \
-  --set postgresql.resources.limits.cpu=3000m \
-  --set postgresql.resources.limits.memory=4Gi \
+  --set postgresql.resources.requests.memory=1Gi \
+  --set postgresql.resources.limits.cpu=4000m \
+  --set postgresql.resources.limits.memory=1Gi \
   --set pgpool.resources.requests.cpu=100m \
-  --set pgpool.resources.requests.memory=1Gi \
-  --set pgpool.resources.limits.cpu=1000m \
-  --set pgpool.resources.limits.memory=1Gi \
+  --set pgpool.resources.requests.memory=500Mi \
+  --set pgpool.resources.limits.cpu=2000m \
+  --set pgpool.resources.limits.memory=500Mi \
   --set postgresql.readinessProbe.enabled=false \
   --set postgresql.startupProbe.enabled=true \
   --set postgresql.startupProbe.failureThreshold=100 \
   --set postgresql.podAntiAffinityPreset=hard \
   --set pgpool.podAntiAffinityPreset=hard \
-  --set metrics.enabled=true \
-  --set metrics.serviceMonitor.enabled=true \
+  --set metrics.enabled=false \
+  --set metrics.serviceMonitor.enabled=false \
   --set postgresql.pdb.create=true \
   --set postgresql.pdb.minAvailable=0 \
   --set postgresql.pdb.maxUnavailable=1 \
@@ -757,6 +758,12 @@ export REPMGR_PASSWORD=$(kubectl get secret --namespace thingsboard postgresql-p
 helm upgrade postgresql bitnami/postgresql-ha \
     --set postgresql.password=[POSTGRES_PASSWORD] \
     --set postgresql.repmgrPassword=[REPMGR_PASSWORD]
+```
+
+Check master-slave
+
+```bash
+kubectl exec -it postgresql-postgresql-0 -- /opt/bitnami/scripts/postgresql-repmgr/entrypoint.sh repmgr -f /opt/bitnami/repmgr/conf/repmgr.conf cluster show
 ```
 
 ### Pod disruption budget
@@ -802,15 +809,15 @@ data:
   SQL_ATTRIBUTES_BATCH_MAX_DELAY_MS: "20"
   # Kafka
   TB_QUEUE_TYPE: "kafka"
-  TB_KAFKA_SERVERS: "kafka-headless:9092"
-  TB_QUEUE_KAFKA_REPLICATION_FACTOR: "2" # IMPORTANT for CLUSTER
+  TB_KAFKA_SERVERS: "kafka-controller-headless:9092"
+  TB_QUEUE_KAFKA_REPLICATION_FACTOR: "3" # IMPORTANT for CLUSTER
   TB_KAFKA_ACKS: "1"
   TB_KAFKA_BATCH_SIZE: "65536" # default is 16384 - it helps to produce messages much efficiently
-  TB_KAFKA_LINGER_MS: "5" # default is 1
-  TB_KAFKA_COMPRESSION_TYPE: "gzip" # none or gzip
-  TB_QUEUE_KAFKA_MAX_POLL_RECORDS: "4096" # default is 8192
-  TB_QUEUE_KAFKA_JE_TOPIC_PROPERTIES: "partitions:12;retention.ms:604800000;segment.bytes:26214400;retention.bytes:104857600" # have to be multiple to tb-js-executor replicas count
-  TB_QUEUE_KAFKA_TA_TOPIC_PROPERTIES: "partitions:12;retention.ms:604800000;segment.bytes:26214400;retention.bytes:104857600" # have to be multiple to tb-core (tb-node) replicas count
+  TB_KAFKA_LINGER_MS: "10" # default is 1
+  TB_KAFKA_COMPRESSION_TYPE: "none" # none or gzip
+  TB_QUEUE_KAFKA_MAX_POLL_RECORDS: "1024" # default is 8192
+  TB_QUEUE_KAFKA_JE_TOPIC_PROPERTIES: "partitions:12;retention.ms:86400000;segment.bytes:26214400;retention.bytes:104857600" # have to be multiple to tb-js-executor replicas count
+  TB_QUEUE_KAFKA_TA_TOPIC_PROPERTIES: "partitions:12;retention.ms:86400000;segment.bytes:26214400;retention.bytes:104857600" # have to be multiple to tb-core (tb-node) replicas count
   TB_QUEUE_CORE_PARTITIONS: "6"
   TB_QUEUE_RE_MAIN_PARTITIONS: "6" # since 3.4 you have to login under sysadmin and change /settings/queues or use API
   TB_QUEUE_RE_HP_PARTITIONS: "6" # since 3.4 you have to login under sysadmin and change /settings/queues or use API
@@ -820,7 +827,7 @@ data:
   TB_QUEUE_RE_MAIN_CONSUMER_PER_PARTITION: "false"
   TB_QUEUE_RE_HP_CONSUMER_PER_PARTITION: "false"
   TB_QUEUE_RE_SQ_CONSUMER_PER_PARTITION: "false"
-  ACTORS_SYSTEM_RULE_DISPATCHER_POOL_SIZE: "4"
+  ACTORS_SYSTEM_RULE_DISPATCHER_POOL_SIZE: "12"
   # Zookeeper
   ZOOKEEPER_ENABLED: "true"
   ZOOKEEPER_URL: "zookeeper-headless:2181"
@@ -829,26 +836,26 @@ data:
   TS_KV_PARTITIONING: "MONTHS" # MONTHS
   USE_TS_KV_PARTITIONING_ON_READ: "false"
 #  DATABASE_TS_LATEST_TYPE: "cassandra" # this is a key difference
-  PERSIST_STATE_TO_TELEMETRY: "true"
+  PERSIST_STATE_TO_TELEMETRY: "false"
   CASSANDRA_URL: "cassandra-headless:9042"
   CASSANDRA_CLUSTER_NAME: "cassandra" # see https://github.com/bitnami/charts/blob/master/bitnami/cassandra/values.yaml
   CASSANDRA_LOCAL_DATACENTER: "datacenter1" # see https://github.com/bitnami/charts/blob/master/bitnami/cassandra/values.yaml
   CASSANDRA_USE_CREDENTIALS: "true"
   CASSANDRA_USERNAME: "cassandra"
-  CASSANDRA_READ_CONSISTENCY_LEVEL: "QUORUM" # IMPORTANT for the CLUSTER data consistency
-  CASSANDRA_WRITE_CONSISTENCY_LEVEL: "QUORUM" # IMPORTANT for the CLUSTER data consistency
+  CASSANDRA_READ_CONSISTENCY_LEVEL: "LOCAL_QUORUM" # IMPORTANT for the CLUSTER data consistency
+  CASSANDRA_WRITE_CONSISTENCY_LEVEL: "LOCAL_QUORUM" # IMPORTANT for the CLUSTER data consistency
   CASSANDRA_QUERY_BUFFER_SIZE: "1000000"
   CASSANDRA_QUERY_CONCURRENT_LIMIT: "500"
-  CASSANDRA_QUERY_POLL_MS: "5"
+  CASSANDRA_QUERY_POLL_MS: "20"
   # Redis
   CACHE_TYPE: "redis"
   REDIS_CONNECTION_TYPE: "cluster"
-  REDIS_NODES: "redis-headless:6379"
+  REDIS_NODES: "valkey-headless:6379"
   REDIS_USE_DEFAULT_POOL_CONFIG: "false"
   REDIS_POOL_CONFIG_BLOCK_WHEN_EXHAUSTED: "false"
   REDIS_POOL_CONFIG_TEST_ON_BORROW: "false"
   REDIS_POOL_CONFIG_TEST_ON_RETURN: "false"
-  CACHE_MAXIMUM_POOL_SIZE: "50"
+  CACHE_MAXIMUM_POOL_SIZE: "20"
   # JS executors
   JS_EVALUATOR: "remote"
   REMOTE_JS_MAX_PENDING_REQUESTS: "100000"
@@ -955,7 +962,7 @@ spec:
   containers:
     - name: tb-db-setup
       imagePullPolicy: Always
-      image: thingsboard/tb-node:3.5.0
+      image: thingsboard/tb-node:4.0.1
       # command: [ '/bin/sh', '-c', 'sleep infinity' ] # for database upgrade
       env:
         - name: TB_SERVICE_ID
@@ -969,8 +976,8 @@ spec:
         - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: redis
-              key: redis-password
+              name: valkey
+              key: valkey-password
         - name: CASSANDRA_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -1028,8 +1035,8 @@ There are two keyspace to upgrade:
     * thingsboard (ThingsBoard's data)
 
 ```bash
-$ kubectl exec -it cassandra-0 -- /bin/bash
-I have no name!@cassandra-0:/$ cqlsh -u ${CASSANDRA_USER} -p ${CASSANDRA_PASSWORD} ${POD_IP}
+export CASSANDRA_PASSWORD=$(kubectl get secret --namespace "thingsboard" cassandra -o jsonpath="{.data.cassandra-password}" | base64 -d)
+kubectl exec -it cassandra-0 -- cqlsh -u cassandra -p ${CASSANDRA_PASSWORD}
 cassandra@cqlsh> DESC KEYSPACE system_auth;
 cassandra@cqlsh> ALTER KEYSPACE system_auth WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };
 cassandra@cqlsh> DESC KEYSPACE thingsboard;
@@ -1048,8 +1055,8 @@ for i in {0..2}; do kubectl exec -it cassandra-${i} -- nodetool repair --full ; 
 **IMPORTANT**. Make sure that your ThingsBoard cluster have a **Cassandra consistency** read/write **level** **QUORUM** (for SimpleStrategy) or **LOCAL_QUORUM** (for NetworkTopologyStrategy)!
 See the example from configmap:
 ```yaml
-  CASSANDRA_READ_CONSISTENCY_LEVEL: "QUORUM" # IMPORTANT for the CLUSTER data consistency
-  CASSANDRA_WRITE_CONSISTENCY_LEVEL: "QUORUM" # IMPORTANT for the CLUSTER data consistency
+  CASSANDRA_READ_CONSISTENCY_LEVEL: "LOCAL_QUORUM" # IMPORTANT for the CLUSTER data consistency
+  CASSANDRA_WRITE_CONSISTENCY_LEVEL: "LOCAL_QUORUM" # IMPORTANT for the CLUSTER data consistency
 ```
 {: .copy-code}
 
@@ -1108,7 +1115,7 @@ spec:
       containers:
         - name: tb-node
           imagePullPolicy: Always
-          image: thingsboard/tb-node:3.5.0
+          image: thingsboard/tb-node:4.0.1
           ports:
             - containerPort: 8080
               name: http
@@ -1117,13 +1124,13 @@ spec:
           resources:
             requests:
               cpu: 300m
-              memory: 3Gi
+              memory: 1Gi
             limits:
-              cpu: 3000m
-              memory: 3Gi
+              cpu: 6000m
+              memory: 2Gi
           env:
             - name: JAVA_OPTS
-              value: "-Xmx2048M -Xms2048M -Xss384k -XX:+AlwaysPreTouch -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1"
+              value: "-Xmx800M -Xms800M -Xss384k -XX:+AlwaysPreTouch -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1"
             - name: TB_SERVICE_TYPE
               value: "tb-core"
             - name: TB_SERVICE_ID
@@ -1137,8 +1144,8 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: redis
-                  key: redis-password
+                  name: valkey
+                  key: valkey-password
             - name: CASSANDRA_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -1175,13 +1182,13 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 10
             successThreshold: 1
-            failureThreshold: 10
+            failureThreshold: 30
           livenessProbe:
             httpGet:
               path: /login
               port: http
-            initialDelaySeconds: 460
-            periodSeconds: 10
+            initialDelaySeconds: 30
+            periodSeconds: 20
             timeoutSeconds: 10
             successThreshold: 1
             failureThreshold: 6
@@ -1231,7 +1238,7 @@ spec:
       containers:
         - name: tb-rule-engine
           imagePullPolicy: Always
-          image: thingsboard/tb-node:3.5.0
+          image: thingsboard/tb-node:4.0.1
           ports:
             - containerPort: 8080
               name: http
@@ -1240,13 +1247,13 @@ spec:
           resources:
             requests:
               cpu: 300m
-              memory: 3584Mi
+              memory: 1Gi
             limits:
-              cpu: 3000m
-              memory: 3584Mi
+              cpu: 6000m
+              memory: 2Gi
           env:
             - name: JAVA_OPTS
-              value: "-Xmx2048M -Xms2048M -Xss384k -XX:+AlwaysPreTouch -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1"
+              value: "-Xmx800M -Xms800M -Xss384k -XX:+AlwaysPreTouch -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1"
             - name: TB_SERVICE_TYPE
               value: "tb-rule-engine"
             - name: TB_SERVICE_ID
@@ -1260,8 +1267,8 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: redis
-                  key: redis-password
+                  name: valkey
+                  key: valkey-password
             - name: CASSANDRA_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -1281,20 +1288,18 @@ spec:
             - mountPath: /var/log/thingsboard
               name: tb-node-logs
           startupProbe:
-            httpGet:
-              path: /login
-              port: http
+            tcpSocket:
+              port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 10
             successThreshold: 1
-            failureThreshold: 10
+            failureThreshold: 30
           livenessProbe:
-            httpGet:
-              path: /login
-              port: http
-            initialDelaySeconds: 460
-            periodSeconds: 10
+            tcpSocket:
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 20
             timeoutSeconds: 10
             successThreshold: 1
             failureThreshold: 6
@@ -1339,7 +1344,7 @@ spec:
       containers:
       - name: tb-web-ui
         imagePullPolicy: Always
-        image: thingsboard/tb-web-ui:3.5.0
+        image: thingsboard/tb-web-ui:4.0.1
         ports:
         - containerPort: 8080
           name: http
@@ -1348,7 +1353,7 @@ spec:
             cpu: 50m
             memory: 100Mi
           limits:
-            cpu: 500m
+            cpu: 1000m
             memory: 100Mi
         env:
         - name: HTTP_BIND_ADDRESS
@@ -1404,7 +1409,7 @@ spec:
       containers:
         - name: tb-js-executor
           imagePullPolicy: Always
-          image: thingsboard/tb-js-executor:3.5.0
+          image: thingsboard/tb-js-executor:4.0.1
           resources:
             requests:
               cpu: 100m
@@ -1434,7 +1439,7 @@ spec:
             - name: TB_KAFKA_BATCH_SIZE
               value: "250"
             - name: TB_KAFKA_COMPRESSION_TYPE
-              value: "gzip"
+              value: "none"
             - name: SCRIPT_USE_SANDBOX
               value: "false"
           envFrom:
@@ -1567,7 +1572,7 @@ spec:
                 path:  logback.xml
       containers:
         - name: tb-mqtt-transport
-          image: thingsboard/tb-mqtt-transport:3.5.0
+          image: thingsboard/tb-mqtt-transport:4.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 1883
@@ -1577,13 +1582,13 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 1536Mi
+              memory: 500Mi
             limits:
               cpu: 1000m
-              memory: 1536Mi
+              memory: 800Mi
           env:
             - name: JAVA_OPTS
-              value: "-Xmx1024M -Xms1024M -Xss256k -XX:+AlwaysPreTouch -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1"
+              value: "-Xmx500M -Xms500M -Xss256k -XX:+AlwaysPreTouch -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1"
             - name: TB_SERVICE_ID
               valueFrom:
                 fieldRef:
@@ -1591,8 +1596,8 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: redis
-                  key: redis-password
+                  name: valkey
+                  key: valkey-password
 #            - name: TB_QUEUE_TRANSPORT_MAX_PENDING_REQUESTS
 #              value: "100000"
 #            - name: TB_QUEUE_TRANSPORT_MAX_REQUEST_TIMEOUT
@@ -1708,7 +1713,7 @@ spec:
                 path:  logback.xml
       containers:
         - name: tb-http-transport
-          image: thingsboard/tb-http-transport:3.5.0
+          image: thingsboard/tb-http-transport:4.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -1718,13 +1723,13 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 1536Mi
+              memory: 500Mi
             limits:
-              cpu: 1000m
-              memory: 1536Mi
+              cpu: 2000m
+              memory: 700Mi
           env:
             - name: JAVA_OPTS
-              value: "-Xmx1024M -Xms1024M -Xss256k -XX:+AlwaysPreTouch -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1"
+              value: "-Xmx400M -Xms400M -Xss256k -XX:+AlwaysPreTouch -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.rmi.port=9999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=127.0.0.1"
             - name: TB_SERVICE_ID
               valueFrom:
                 fieldRef:
@@ -1732,8 +1737,8 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: redis
-                  key: redis-password
+                  name: valkey
+                  key: valkey-password
 #            - name: TB_QUEUE_TRANSPORT_MAX_PENDING_REQUESTS
 #              value: "100000"
 #            - name: TB_QUEUE_TRANSPORT_MAX_REQUEST_TIMEOUT
@@ -1815,37 +1820,37 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tb-http-loadbalancer
-  annotations:
-    kubernetes.io/ingress.class: alb
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
+#  annotations:
+#    kubernetes.io/ingress.class: alb
+#    alb.ingress.kubernetes.io/scheme: internet-facing
+#    alb.ingress.kubernetes.io/target-type: ip
 spec:
   rules:
     - http:
         paths:
-          - path: /api/v1/*
-            pathType: ImplementationSpecific
+          - path: /api/v1/
+            pathType: Prefix
             backend:
               service:
                 name: tb-http-transport
                 port:
                   number: 8080
-          - path: /static/rulenode/*
-            pathType: ImplementationSpecific
+          - path: /static/rulenode/
+            pathType: Prefix
             backend:
               service:
                 name: tb-node
                 port:
                   number: 8080
-          - path: /static/*
-            pathType: ImplementationSpecific
+          - path: /static/
+            pathType: Prefix
             backend:
               service:
                 name: tb-web-ui
                 port:
                   number: 8080
           - path: /index.html
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: tb-web-ui
@@ -1858,8 +1863,8 @@ spec:
                 name: grafana-service
                 port:
                   number: 3000
-          - path: /*
-            pathType: ImplementationSpecific
+          - path: /
+            pathType: Prefix
             backend:
               service:
                 name: tb-node
@@ -2002,7 +2007,7 @@ metadata:
   name: performance-test
 spec:
   serviceName: performance-test
-  replicas: 10
+  replicas: 3
 #  podManagementPolicy: Parallel
   selector:
     matchLabels:
@@ -2012,8 +2017,8 @@ spec:
       labels:
         app: performance-test
     spec:
-      nodeSelector:
-        role: client # stick to the performance-test nodes
+#      nodeSelector:
+#        role: client # stick to the performance-test nodes
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
@@ -2026,8 +2031,8 @@ spec:
                       values:
                         - performance-test
                 topologyKey: "kubernetes.io/hostname"
-      imagePullSecrets:
-        - name: regcred
+#      imagePullSecrets:
+#        - name: regcred
       securityContext:
         sysctls:
           - name: net.ipv4.ip_local_port_range
@@ -2035,7 +2040,7 @@ spec:
       containers:
         - name: server
           imagePullPolicy: IfNotPresent 
-          image: thingsboard/tb-ce-performance-test:3.4.0
+          image: thingsboard/tb-ce-performance-test:latest
           command:
             - /bin/bash
             - -ec
@@ -2054,13 +2059,13 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 500Mi
+              memory: 100Mi
             limits:
-              cpu: 900m
+              cpu: 2000m
               memory: 500Mi
           env:
             - name: REST_URL
-              value: "http://k8s-thingsbo-tbhttplo-2fcaf89277-737278123.eu-west-1.elb.amazonaws.com:80"
+              value: "http://tb-node:8080"
             - name: MQTT_HOST
               value: "tb-mqtt-loadbalancer"
             - name: ALARMS_PER_SECOND # per replica
@@ -2070,13 +2075,13 @@ spec:
             - name: DEVICE_CREATE_ON_START
               value: "false"
             - name: WARMUP_PACK_SIZE
-              value: "50"
+              value: "100"
             - name: DEVICE_START_IDX
               value: "0"
             - name: TOTAL_REPLICAS
-              value: "10"
+              value: "3"
             - name: TOTAL_DEVICES
-              value: "100000"
+              value: "20000"
             - name: TOTAL_MESSAGES_PER_SECOND
               value: "1000"
             - name: POD_NAME

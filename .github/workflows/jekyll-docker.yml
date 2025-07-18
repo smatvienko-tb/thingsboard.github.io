@@ -2,7 +2,7 @@ name: Jekyll site CI
 
 on:
   push:
-    branches: [ "action/release/4.1-action-speedup" ]
+    branches: [ "master", "action/release/4.1-action-speedup" ]
   pull_request:
     branches: [ "master" ]
 

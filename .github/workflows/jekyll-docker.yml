@@ -11,6 +11,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      PAGES_REPO_NWO: smatvienko-tb/thingsboard.github.io
+
     steps:
     - uses: actions/checkout@v4
     - name: Build the site in the jekyll/builder container

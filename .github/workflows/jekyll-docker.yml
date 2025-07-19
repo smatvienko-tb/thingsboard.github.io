@@ -17,7 +17,7 @@ jobs:
 
       - name: Define cache key
         id: vars
-        run: echo "key=v0-linux-jekyll-${{ github.ref }}-${{ env.HASH }}" >> $GITHUB_OUTPUT
+        run: echo "key=v1-linux-jekyll-${{ github.ref }}-${{ env.HASH }}" >> $GITHUB_OUTPUT
         env:
           HASH: ${{ hashFiles('**/*') }}
     

@@ -17,9 +17,12 @@ jobs:
     - run: echo "::debug::workspace is ${{ github.workspace }}"
     - run: echo "::debug::pwd is $(pwd)"
     - run: ls -lah ${{ github.workspace }}
+    - run: sudo chown -R 1000:1000 ${{ github.workspace }}
+    - run: ls -lah ${{ github.workspace }}
+    - run: whoami
     - name: Build the site in the jekyll/builder container
       run: |
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         -e "PAGES_REPO_NWO=${{ github.repository }}" \
-        jekyll/builder:latest /bin/bash -c "chmod -R 777 /srv/jekyll && jekyll build --future"
+        jekyll/builder:latest /bin/bash -c "whoami && jekyll build"

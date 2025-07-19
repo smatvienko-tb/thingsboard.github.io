@@ -4,6 +4,7 @@ title: SCADA Oil and gas drilling system
 description: Drilling system solution with ThingsBoard IoT platform
 notitle: "true"
 includeAdvantages: "true"
+contactUsModal: "true"
 
 ---
 
@@ -22,7 +23,7 @@ includeAdvantages: "true"
         </div>
         <div class="long">
             <p>The main advantage of SCADA (Supervisory Control and Data Acquisition) systems is their ability to monitor production processes in real time and respond quickly to deviations. ThingsBoard provides comprehensive tools to collect, process, and visualize data from SCADA components, such as PLCs (Programmable Logic Controllers) and RCUs (Remote Control Units), enabling seamless integration with various industrial processes.</p>
-            <p>To illustrate the flexibility of ThingsBoard's SCADA integration, we have developed the drilling management system template. This solution demonstrates how SCADA symbols—such as drilling rigs, rotors, hoists, pumps, and preventers—can be utilized to create an efficient and automated drilling control system. It enables the entire drilling process to be visualized on a dashboard, allowing for real-time monitoring of drilling parameters, equipment performance, and safety conditions, ensuring timely detection of anomalies and improved operational efficiency.</p>
+            <p>To illustrate the flexibility of ThingsBoard's SCADA integration, we have developed the <a href="/docs/pe/solution-templates/scada-drilling-system/">drilling management system template</a>. This solution demonstrates how SCADA symbols—such as drilling rigs, rotors, hoists, pumps, and preventers—can be utilized to create an efficient and automated drilling control system. It enables the entire drilling process to be visualized on a dashboard, allowing for real-time monitoring of drilling parameters, equipment performance, and safety conditions, ensuring timely detection of anomalies and improved operational efficiency.</p>
         </div>
     </div>
 </section>
@@ -31,10 +32,12 @@ includeAdvantages: "true"
     {% include default-carousel.liquid collectionMap = 'use-cases' collectionKey = 'scada-oil-and-gas-drilling-system' %}
 </section>
 
-<section class="scada-solution-structure">
+{% include contact-us-banner.liquid %}
+
+<section class="scada-solution-structure addedBanner">
     <h2>Solution structure</h2>
     <div class="scheme">
-        <img id="schemeSVG" loading="lazy" data-src="/images/usecases/scada-drilling-system/scada-drilling-solution-structure.svg"  alt="SCADA oil and gas drilling solution structure">
+        <img id="schemeSVG" loading="lazy" data-src="https://img.thingsboard.io/usecases/scada-drilling-system/scada-drilling-solution-structure.svg"  alt="SCADA oil and gas drilling solution structure">
     </div>
     <div class="use-cases-solution-structure-cards">
         <div class="use-cases-solution-structure-card">
@@ -74,7 +77,7 @@ includeAdvantages: "true"
                 <h3>Connection components</h3>
                 <p>These connector symbols facilitate the integration and linking of different equipment and symbols within the SCADA system, ensuring structured and logical connections.</p>
             </div>
-            <img src="/images/usecases/scada/connectors.svg" alt="Examples of SCADA high performance connectors symbols">
+            <img src="https://img.thingsboard.io/usecases/scada/connectors.svg" alt="Examples of SCADA high performance connectors symbols">
         </div>
         <div class="scada-key-function-block">
             <div class="key-function-description">
@@ -85,7 +88,7 @@ includeAdvantages: "true"
                     <li><b>HP Platform</b> – Base structure providing stability and operational support.</li>
                 </ul>
             </div>
-            <img src="/images/usecases/scada-drilling-system/drilling-structure-components.svg" alt="Examples of SCADA high performance drilling structure symbols">
+            <img src="https://img.thingsboard.io/usecases/scada-drilling-system/drilling-structure-components.svg" alt="Examples of SCADA high performance drilling structure symbols">
         </div>
         <div class="scada-key-function-block">
             <div class="key-function-description">
@@ -96,7 +99,7 @@ includeAdvantages: "true"
                     <li><b>HP Preventer</b> – Blowout preventer for pressure control and system safety.</li>
                 </ul>
             </div>
-            <img src="/images/usecases/scada-drilling-system/rotational-pressure-components.svg" alt="Examples of SCADA high performance Rotational and pressure control symbols">
+            <img src="https://img.thingsboard.io/usecases/scada-drilling-system/rotational-pressure-components.svg" alt="Examples of SCADA high performance Rotational and pressure control symbols">
         </div>
         <div class="scada-key-function-block">
             <div class="key-function-description">
@@ -106,7 +109,7 @@ includeAdvantages: "true"
                     <li><b>HP Drill</b> – Represents the drill bit responsible for boring into the ground.</li>
                 </ul>
             </div>
-            <img src="/images/usecases/scada-drilling-system/drilling-operation-components.svg" alt="Examples of SCADA high performance drilling operation symbols">
+            <img src="https://img.thingsboard.io/usecases/scada-drilling-system/drilling-operation-components.svg" alt="Examples of SCADA high performance drilling operation symbols">
         </div>
         <div class="scada-key-function-block">
             <div class="key-function-description">
@@ -117,7 +120,7 @@ includeAdvantages: "true"
                     <li><b>HP Crane</b> – Represents cranes used for material handling and rig setup.</li>
                 </ul>
             </div>
-            <img src="/images/usecases/scada-drilling-system/crane-hoisting-components.svg" alt="Examples of SCADA high performance crane and hoisting systems symbols">
+            <img src="https://img.thingsboard.io/usecases/scada-drilling-system/crane-hoisting-components.svg" alt="Examples of SCADA high performance crane and hoisting systems symbols">
         </div>
         <div class="scada-key-function-block">
             <div class="key-function-description">
@@ -128,14 +131,14 @@ includeAdvantages: "true"
                     <li><b>HP Drilling Line</b> – Hoisting system for lowering and raising the drill string.</li>
                 </ul>
             </div>
-            <img src="/images/usecases/scada-drilling-system/lifting-handling-components.svg" alt="Examples of SCADA high performance Lifting and handling symbols">
+            <img src="https://img.thingsboard.io/usecases/scada-drilling-system/lifting-handling-components.svg" alt="Examples of SCADA high performance Lifting and handling symbols">
         </div>
         <div class="scada-key-function-block">
             <div class="key-function-description">
                 <h3>Scale and сontrol сomponents</h3>
                 <p>These SCADA components provide real-time monitoring and control of critical drilling parameters such as depth, pressure, speed, and temperature. The rotor control module enables operators to efficiently activate or deactivate drilling equipment, ensuring safe and optimized operations.</p>
             </div>
-            <img src="/images/usecases/scada-drilling-system/scale-сontrol-components.svg" alt="Examples of SCADA high performance Scale and сontrol symbols">
+            <img src="https://img.thingsboard.io/usecases/scada-drilling-system/scale-сontrol-components.svg" alt="Examples of SCADA high performance Scale and сontrol symbols">
         </div>
     </div>
 </section>
@@ -256,11 +259,11 @@ includeAdvantages: "true"
             </div>
         </div>
         <div class="images-row">
-            <div class="application-image"><img src="/images/usecases/scada-drilling-system/mining.svg"></div>
-            <div class="application-image"><img src="/images/usecases/scada-drilling-system/water.svg"></div>
-            <div class="application-image"><img src="/images/usecases/scada-drilling-system/automation.svg"></div>
-            <div class="application-image"><img src="/images/usecases/scada-drilling-system/logistics.svg"></div>
-            <div class="application-image"><img src="/images/usecases/scada-drilling-system/construction.svg"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/mining.svg"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/water.svg"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/automation.svg"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/logistics.svg"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/construction.svg"></div>
         </div>
         <div class="text-row-bottom">
             <div class="text-block">
@@ -275,7 +278,7 @@ includeAdvantages: "true"
     </div>
     <div class="applications-container-small">
         <div class="application-block">
-            <div class="image"><img src="/images/usecases/scada-drilling-system/mining-2.svg"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/mining-2.svg"></div>
             <div class="text-block">
                 <h3>Mining and material extraction</h3>
                 <p>Symbols like cranes, drilling rigs, and hoisting systems support underground and open-pit mining by managing heavy equipment movement, monitoring ore extraction, and ensuring operational efficiency.</p>
@@ -286,10 +289,10 @@ includeAdvantages: "true"
                 <h3>Water and wastewater management</h3>
                 <p>SCADA elements including valve control, pump monitoring, and real-time scaling systems assist in managing municipal water distribution, wastewater treatment, and irrigation systems for optimal efficiency.</p>
             </div>
-            <div class="image"><img src="/images/usecases/scada-drilling-system/water-2.svg"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/water-2.svg"></div>
         </div>
         <div class="application-block">
-            <div class="image"><img src="/images/usecases/scada-drilling-system/automation-2.svg"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/automation-2.svg"></div>
             <div class="text-block">
                 <h3>Industrial automation and manufacturing</h3>
                 <p>SCADA components such as drawworks, control panels, and dynamic monitoring scales help automate material handling, optimize assembly lines, and regulate heavy machinery operations in manufacturing plants.</p>
@@ -300,10 +303,10 @@ includeAdvantages: "true"
                 <h3>Transportation and logistics</h3>
                 <p>Symbols like cranes and hoists can be used in ports, airports, and warehouses to monitor cargo handling, automate container movement, and improve operational workflow in logistics.</p>
             </div>
-            <div class="image"><img src="/images/usecases/scada-drilling-system/logistics-2.svg"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/logistics-2.svg"></div>
         </div>
         <div class="application-block">
-            <div class="image"><img src="/images/usecases/scada-drilling-system/construction-2.svg"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/scada-drilling-system/construction-2.svg"></div>
             <div class="text-block">
                 <h3>Construction and infrastructure develop</h3>
                 <p>Equipment like cranes, drilling rigs, and hoisting lines are critical in large-scale construction projects, enabling real-time monitoring of material transport, foundation drilling, and structural stability.</p>
@@ -404,7 +407,7 @@ includeAdvantages: "true"
             </div>
             <div class="buttons-block">
                 <a id="UseCases_ScadaDrilling_ViewLiveDemo" target="_blank" href="https://thingsboard.cloud/dashboard/febfdb90-3170-11f0-858a-67efd1bc8a87?publicId=7aa99e80-8acd-11ef-a59e-a9c993dbec14" class="button gtm_button">View live demo</a>
-                <a id="UseCases_ScadaDrilling_ContactUs" target="_blank" href="https://thingsboard.io/docs/contact-us/" class="button contact-us gtm_button">Contact us</a>
+                <a id="UseCases_ScadaDrilling_ContactUs" target="_blank" href="/docs/contact-us/?subject=Custom%20Development" class="button contact-us gtm_button">Contact us</a>
             </div>`;
     
             return block;
@@ -412,15 +415,15 @@ includeAdvantages: "true"
 
         function getImage(index) {
             const images = [
-                "<img src='/images/usecases/scada-drilling-system/drilling-main.webp' alt='Main state of SCADA drilling dashboard'/>",
-                "<img src='/images/usecases/scada-drilling-system/drilling-data.webp' alt='Data state of SCADA drilling dashboard'/>",
-                "<img src='/images/usecases/scada-drilling-system/drilling-rig.webp' alt='Drilling rig state of SCADA drilling dashboard'/>",
-                "<img src='/images/usecases/scada-drilling-system/drilling-drawwork.webp' alt='Drawworks system state of SCADA drilling dashboard'/>",
-                "<img src='/images/usecases/scada-drilling-system/drilling-preventer.webp' alt='Blowout preventer (BOP) state of SCADA drilling dashboard'/>",
-                "<img src='/images/usecases/scada-drilling-system/drilling-bit.webp' alt='Drill bit performance state of SCADA drilling dashboard'/>",
-                "<img src='/images/usecases/scada-drilling-system/drilling-tank.webp' alt='Drilling mud system state of SCADA drilling dashboard'/>",
-                "<img src='/images/usecases/scada-drilling-system/drilling-alarms.webp' alt='Alarms and notifications state of SCADA drilling dashboard'/>",
-                "<img src='/images/usecases/scada-drilling-system/drilling-gateway.webp' alt='Modbus gateway & device connectivity state of SCADA drilling dashboard'/>"
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-main.webp' alt='Main state of SCADA drilling dashboard'/>",
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-data.webp' alt='Data state of SCADA drilling dashboard'/>",
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-rig.webp' alt='Drilling rig state of SCADA drilling dashboard'/>",
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-drawwork.webp' alt='Drawworks system state of SCADA drilling dashboard'/>",
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-preventer.webp' alt='Blowout preventer (BOP) state of SCADA drilling dashboard'/>",
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-bit.webp' alt='Drill bit performance state of SCADA drilling dashboard'/>",
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-tank.webp' alt='Drilling mud system state of SCADA drilling dashboard'/>",
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-alarms.webp' alt='Alarms and notifications state of SCADA drilling dashboard'/>",
+                "<img src='https://img.thingsboard.io/usecases/scada-drilling-system/drilling-gateway.webp' alt='Modbus gateway & device connectivity state of SCADA drilling dashboard'/>"
             ];
             return images[index];
         }

@@ -10,7 +10,7 @@ notitle: "true"
         header.style.backgroundColor = '#F4F8FE';
         header.style.boxShadow = 'none';
         const contentEl = document.getElementById('content');
-        contentEl.style.backgroundImage = "url('/images/contact-us-bg.svg')";
+        contentEl.style.backgroundImage = "url('https://img.thingsboard.io/contact-us-bg.svg')";
         contentEl.style.backgroundPosition = "center";
         contentEl.style.backgroundRepeat = "no-repeat";
         contentEl.style.backgroundSize = "contain";
@@ -178,6 +178,7 @@ notitle: "true"
                         <option value="ThingsBoard Products">ThingsBoard Products</option>
                         <option value="Private Cloud">Private Cloud</option>
                         <option value="Deployment Options">Deployment Options</option>
+                        <option value="Custom Development Service">Custom Development Service</option>
                         <option value="Training">Training</option>
                         <option value="Professional Services">Professional Services</option>
                         <option value="Partnership">Partnership</option>

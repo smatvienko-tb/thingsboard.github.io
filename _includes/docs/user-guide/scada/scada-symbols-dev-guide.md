@@ -44,7 +44,7 @@ Creating a SCADA symbol in ThingsBoard involves an SVG file along with several c
 
 Assume we want to transform the SVG file shown below into an interactive SCADA symbol:
 
-<img src="/images/user-guide/scada/fan.svg" alt="FAN SVG" width="300" height="300">
+<img src="https://img.thingsboard.io/user-guide/scada/fan.svg" alt="FAN SVG" width="300" height="300">
 
 *Figure: Static SVG image including a fan, text label, and two buttons.*
 
@@ -69,7 +69,7 @@ Next, we will outline the steps to achieve this functionality.
 
 - Right-click on the SVG file shown below and select "Save image as" to save the file to your PC:
 
-<img src="/images/user-guide/scada/fan.svg" alt="FAN SVG" width="300" height="300">
+<img src="https://img.thingsboard.io/user-guide/scada/fan.svg" alt="FAN SVG" width="300" height="300">
 
 - Navigate to the "Resources" page of the "SCADA symbols" section and click the "Upload SCADA symbol" button;
 - Drop the `fan.svg` file in the appropriate field, or upload it from a folder on your computer, rename it to "Fan", and click "Upload".
@@ -1011,7 +1011,7 @@ You can download the SCADA symbol with all settings. To do this, click the "Down
 <br>
 Here is an example of a configured SCADA symbol:
 
-<img src="/images/user-guide/scada/configured_fan.svg" alt="FAN SVG" width="300" height="300">
+<img src="https://img.thingsboard.io/user-guide/scada/configured_fan.svg" alt="FAN SVG" width="300" height="300">
 
 ### Widget's test
 
@@ -1067,9 +1067,9 @@ The `ScadaSymbolApi` (referred to as `api` when accessed via `ScadaSymbolContext
 
   **Returns**: Newly generated element ID as a string.
   <br/><br/>
-* **formatValue**: Formats numeric values according to specified precision and units.
+* **formatValue**: Formats numeric values according to specified precision and unit conversions.
    ```javascript
-   formatValue: (value: any, dec?: number, units?: string, showZeroDecimals?: boolean) => string | undefined
+   formatValue: (value: any, dec?: number, units?: string | TbUnit, showZeroDecimals?: boolean) => string | undefined
    ```
 
   **Parameters**:
@@ -1080,6 +1080,19 @@ The `ScadaSymbolApi` (referred to as `api` when accessed via `ScadaSymbolContext
 
   **Returns**: Formatted value as a string or undefined if formatting fails.
   <br/><br/>
+
+* **formatValue**: Formats numeric values according to specified precision and unit conversions.
+   ```javascript
+   formatValue: (value: any, settings: ValueFormatSettings) => string | undefined
+   ```
+
+  **Parameters**:
+  - **value**: Numeric value to be formatted.
+  - **settings**: ValueFormatSettings object defining formatting options (decimals, units, ignoreUnitSymbol, showZeroDecimals).
+
+  **Returns**: Formatted value as a string or undefined if formatting fails.
+  <br/><br/>
+
 * **text**: Sets or updates the text content of one or more SVG elements. Only applicable for elements of type [SVG.Text](https://svgjs.dev/docs/3.2/shape-elements/#svg-text){:target="_blank"} and [SVG.Tspan](https://svgjs.dev/docs/3.2/shape-elements/#svg-tspan){:target="_blank"}.
    ```javascript
    text: (element: Element | Element[], text: string) => void
@@ -1185,6 +1198,29 @@ The `ScadaSymbolApi` (referred to as `api` when accessed via `ScadaSymbolContext
     - **valueId**: ID of the behavior item with type 'Value'.
     - **value**: New value to set.
       <br/><br/>
+
+* **unitSymbol**: Retrieves the target unit symbol based on the current unit system or the provided unit.
+   ```javascript
+   unitSymbol: (unit: TbUnit) => string
+   ```
+
+  **Parameters**:
+  - **unit**: Unit specification, either a string or a TbUnitMapping object defining unit mappings for different systems (e.g., METRIC, IMPERIAL, HYBRID).
+
+  **Returns**: The target unit symbol as a string, derived from the current unit system or the provided unit.
+  <br/><br/>
+
+* **convertUnitValue**: Converts a numeric value from one unit to another using the provided unit specification.
+   ```javascript
+   convertUnitValue: (value: number, unit: TbUnit) => number
+   ```
+
+  **Parameters**:
+  - **value**: Numeric value to be converted.
+  - **unit**: Unit specification, either a string representing the source unit or a TbUnitMapping object for system-based conversion.
+
+  **Returns**: The converted numeric value. Returns the original value if conversion fails or no conversion is needed.
+  <br/><br/>
 
 ### ScadaSymbolAnimation
 

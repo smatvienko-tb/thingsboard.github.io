@@ -5,6 +5,7 @@ description: Discover scalable and secure IoT environment monitoring solutions w
 notitle: "true"
 customTitle: "true"
 includeAdvantages: "true"
+contactUsModal: "true"
 
 ---
 
@@ -22,7 +23,7 @@ includeAdvantages: "true"
             </div>
         </div>
         <div class="long">
-            <p>ThingsBoard provides a scalable, reliable, and secure platform for environment monitoring. With built-in support for LoRaWAN, NB-IoT, and Sigfox, it enables efficient integration of numerous low-power sensors over long distances, minimizing infrastructure complexity. The platform supports standard IoT protocols like HTTP, MQTT, CoAP, and LwM2M, making it easy to connect a wide range of devices and scale with your project.</p>
+            <p>ThingsBoard provides a scalable, reliable, and secure platform for <a href="/docs/pe/solution-templates/temperature-humidity-sensors/">environment monitoring</a>. With built-in support for LoRaWAN, NB-IoT, and Sigfox, it enables efficient integration of numerous low-power sensors over long distances, minimizing infrastructure complexity. The platform supports standard IoT protocols like HTTP, MQTT, CoAP, and LwM2M, making it easy to connect a wide range of devices and scale with your project.</p>
             <p>Automated features—from real-time alerts on critical changes to forwarding data into external analytics tools—ensure proactive monitoring. Intuitive dashboards, customizable logic, and seamless integrations turn raw environmental data into actionable insights, enabling smarter and faster decisions.</p>        </div>
     </div>
 </section>
@@ -30,6 +31,8 @@ includeAdvantages: "true"
 <section class="environment-monitoring-carousel carousel-padding">
     {% include default-carousel.liquid collectionMap = 'use-cases' collectionKey = 'environment-monitoring' %}
 </section> 
+
+{% include contact-us-banner.liquid %}
 
 <section class="environment-monitoring-solution-structure">
     <h2>Solution structure of environment monitoring</h2>
@@ -44,7 +47,7 @@ includeAdvantages: "true"
         </div>
     </div>
     <div class="scheme">
-        <img id="schemeSVG" loading="lazy" src="/images/usecases/environment-monitoring/scheme.svg" alt="Environment monitoring solution architecture" title="Environment monitoring solution architecture: IoT devices connect via gateways to the cloud for processing, visualization, and automation">
+        <img id="schemeSVG" loading="lazy" src="https://img.thingsboard.io/usecases/environment-monitoring/scheme.svg" alt="Environment monitoring solution architecture" title="Environment monitoring solution architecture: IoT devices connect via gateways to the cloud for processing, visualization, and automation">
     </div>
 </section>
 
@@ -122,11 +125,11 @@ includeAdvantages: "true"
             </div>
         </div>
         <div class="images-row">
-            <div class="application-image"><img src="/images/usecases/environment-monitoring/smart-cities-1.svg" alt="Smart city" title="Smart cities and urban infrastructure"></div>
-            <div class="application-image"><img src="/images/usecases/environment-monitoring/laboratory-1.svg" alt="Laboratory" title="Healthcare and laboratory environments"></div>
-            <div class="application-image"><img src="/images/usecases/environment-monitoring/agriculture-1.svg" alt="Greenhouse" title="Agricultural and greenhouse facilities"></div>
-            <div class="application-image"><img src="/images/usecases/environment-monitoring/education-1.svg" alt="School" title="Educational and research institutions"></div>
-            <div class="application-image"><img src="/images/usecases/environment-monitoring/warehouse-1.svg" alt="Warehouse" title="Warehouses and cold storage facilities"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/smart-cities-1.svg" alt="Smart city" title="Smart cities and urban infrastructure"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/laboratory-1.svg" alt="Laboratory" title="Healthcare and laboratory environments"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/agriculture-1.svg" alt="Greenhouse" title="Agricultural and greenhouse facilities"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/education-1.svg" alt="School" title="Educational and research institutions"></div>
+            <div class="application-image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/warehouse-1.svg" alt="Warehouse" title="Warehouses and cold storage facilities"></div>
         </div>
         <div class="text-row-bottom">
             <div class="text-block">
@@ -141,7 +144,7 @@ includeAdvantages: "true"
     </div>
     <div class="applications-container-small">
         <div class="application-block">
-            <div class="image"><img src="/images/usecases/environment-monitoring/smart-cities-2.svg" alt="Smart city" title="Smart cities and urban infrastructure"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/smart-cities-2.svg" alt="Smart city" title="Smart cities and urban infrastructure"></div>
             <div class="text-block">
                 <h3>Smart cities and urban infrastructure</h3>
                 <p>Monitoring air quality, noise levels, temperature, and humidity across city zones to support Environment policy, alert residents, improve urban living conditions.</p>
@@ -152,10 +155,10 @@ includeAdvantages: "true"
                 <h3>Healthcare and laboratory environments</h3>
                 <p>Maintaining sterile conditions and proper ventilation by tracking air quality, CO₂ levels, and temperature in sensitive medical or laboratory zones.</p>
             </div>
-            <div class="image"><img src="/images/usecases/environment-monitoring/laboratory-2.svg" alt="Laboratory" title="Healthcare and laboratory environments"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/laboratory-2.svg" alt="Laboratory" title="Healthcare and laboratory environments"></div>
         </div>
         <div class="application-block">
-            <div class="image"><img src="/images/usecases/environment-monitoring/agriculture-2.svg" alt="Greenhouse" title="Agricultural and greenhouse facilities"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/agriculture-2.svg" alt="Greenhouse" title="Agricultural and greenhouse facilities"></div>
             <div class="text-block">
                 <h3>Agricultural and greenhouse facilities</h3>
                 <p>Controlling power consumption in classrooms, labs, and dormitories, scheduling energy use based on occupancy, and ensuring sustainability targets are met.</p>
@@ -166,10 +169,10 @@ includeAdvantages: "true"
                 <h3>Educational and research institutions</h3>
                 <p>Collecting long-term Environment data for scientific research, campus sustainability programs, and educational use in Environment studies.</p>
             </div>
-            <div class="image"><img src="/images/usecases/environment-monitoring/education-2.svg" alt="School" title="Educational and research institutions"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/education-2.svg" alt="School" title="Educational and research institutions"></div>
         </div>
         <div class="application-block">
-            <div class="image"><img src="/images/usecases/environment-monitoring/warehouse-2.svg" alt="Warehouse" title="Warehouses and cold storage facilities"></div>
+            <div class="image"><img src="https://img.thingsboard.io/usecases/environment-monitoring/warehouse-2.svg" alt="Warehouse" title="Warehouses and cold storage facilities"></div>
             <div class="text-block">
                 <h3>Warehouses and cold storage facilities</h3>
                 <p>Monitoring temperature, humidity, and air circulation to ensure proper storage conditions for perishable goods and pharmaceutical products.</p>
@@ -185,7 +188,7 @@ includeAdvantages: "true"
         <p>The following interactive dashboard represents an environment monitoring component that you may easily embed into your IoT solution. This particular dashboard allows users to monitor temperature and humidity sensors. You may quickly adapt it to air quality or other sensors and add remote control scenarios.</p>
     </div>
     <div class="summary-icon">
-        <img src="/images/usecases/health-care/summary.svg" alt="Text summary icon" title="Text summary icon">
+        <img src="https://img.thingsboard.io/usecases/health-care/summary.svg" alt="Text summary icon" title="Text summary icon">
     </div>
 </section>
 
@@ -270,7 +273,7 @@ includeAdvantages: "true"
             </div>
             <div class="buttons-block">
                 <a id="UseCases_EnvMon_ViewLiveDemo" target="_blank" href="https://thingsboard.cloud/dashboard/dfaef940-8a91-11ec-83d0-83ba2015b874?publicId=4978baf0-8a92-11ec-98f9-ff45c37940c6" class="button gtm_button">View live demo</a>
-                <a id="UseCases_EnvMon_ContactUs" target="_blank" href="https://thingsboard.io/docs/contact-us/" class="button contact-us gtm_button">Contact us</a>
+                <a id="UseCases_EnvMon_ContactUs" target="_blank" href="/docs/contact-us/?subject=Custom%20Development" class="button contact-us gtm_button">Contact us</a>
             </div>`;
     
             return block;
@@ -278,10 +281,10 @@ includeAdvantages: "true"
 
         function getImage(index) {
             const images = [
-                "<img src='/images/usecases/environment-monitoring/environment-monitoring-2.webp' alt='Dashboard with sensor status, critical alarm, and map location of sensors' title='ThingsBoard dashboard showing real-time sensor metrics, alarm status, and their geographic positions on the map'/>",
-                "<img src='/images/usecases/environment-monitoring/environment-monitoring-3.webp' alt='Temperature and humidity charts with location of Sensor C1' title='Live monitoring of Sensor C1: temperature and humidity data alongside sensor location on the map'/>",
-                "<img src='/images/usecases/environment-monitoring/environment-monitoring-4.webp' alt='Temperature and humidity charts with location of Sensor T1' title='Sensor T1 real-time readings: temperature and humidity graphs with sensor map marker'/>",
-                "<img src='/images/usecases/environment-monitoring/environment-monitoring-1.webp' alt='Sensor configuration panel with thresholds and map location in ThingsBoard' title='Editing Sensor T1: setting temperature and humidity thresholds and viewing sensor location on the map'/>",
+                "<img src='https://img.thingsboard.io/usecases/environment-monitoring/environment-monitoring-2.webp' alt='Dashboard with sensor status, critical alarm, and map location of sensors' title='ThingsBoard dashboard showing real-time sensor metrics, alarm status, and their geographic positions on the map'/>",
+                "<img src='https://img.thingsboard.io/usecases/environment-monitoring/environment-monitoring-3.webp' alt='Temperature and humidity charts with location of Sensor C1' title='Live monitoring of Sensor C1: temperature and humidity data alongside sensor location on the map'/>",
+                "<img src='https://img.thingsboard.io/usecases/environment-monitoring/environment-monitoring-4.webp' alt='Temperature and humidity charts with location of Sensor T1' title='Sensor T1 real-time readings: temperature and humidity graphs with sensor map marker'/>",
+                "<img src='https://img.thingsboard.io/usecases/environment-monitoring/environment-monitoring-1.webp' alt='Sensor configuration panel with thresholds and map location in ThingsBoard' title='Editing Sensor T1: setting temperature and humidity thresholds and viewing sensor location on the map'/>",
             ];
             return images[index];
         }

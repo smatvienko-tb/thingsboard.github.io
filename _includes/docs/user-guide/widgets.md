@@ -217,6 +217,8 @@ There are four types of keys: Attributes, Time Series, Entity Field and Alarm Fi
 
 {% include images-gallery.html imageCollection="data-key-configuration-units" %}
 
+> Starting from ThingsBoard 4.1, widgets also support automatic data conversion and unit switching based on the selected unit system. Learn more about this [here](/docs/{{docsPrefix}}user-guide/ui/unit-conversion/){:target="_blank"}.
+
 - **Decimals.** Specify the desired number of digits to be displayed after floating-point number and click “Save”.
 
 {% include images-gallery.html imageCollection="data-key-configuration-decimals" %}
@@ -330,7 +332,7 @@ You can choose a combination of alarm statuses and severity. You may also define
 Let's assume you have added the "Timeseries Line Chart" widget to display thermometers using the widget data configuration [step](/docs/{{docsPrefix}}user-guide/widgets/#data-settings) only.
 You should see a similar widget (note that you should send/simulate some data to see the actual lines in the chart):
 
-![image](/images/user-guide/widgets/overview/widget-example.png)
+![image](https://img.thingsboard.io/user-guide/widgets/overview/widget-example.png)
 
 Let's use the basic widget settings to customize the widget. We will demonstrate how each setting affects the widget.
 

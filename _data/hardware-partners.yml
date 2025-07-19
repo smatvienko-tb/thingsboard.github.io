@@ -1,8 +1,23 @@
 - type:
     - LoRaWAN
     - Wi-Fi
+    - LTE-M
+    - MQTT
+    - Modbus
+  name: ACE AUTOMATION
+  logo: https://img.thingsboard.io/partners/ace-automation-logo.png
+  site:
+    href: https://aceautomation.eu/
+  links:
+    0:
+      label: Connect ACE MQTT 4G GPS Gateway to ThingsBoard
+      href: https://thingsboard.io/docs/devices-library/ace-iot-gateway-and-siemens-logo/
+  description: ACE Automation Europe designs compact PLCs, touchscreen HMIs, and LTE/4G MQTT gateways. The “Nano ACE” series stands out for its ultra-low power consumption, compact form factor, and PCB-mount version. Our HMIs are powerful, affordable, and easy to use. The LTE/4G multi-operator gateway is ideal for remote IoT monitoring and control via MQTT.
+- type:
+    - LoRaWAN
+    - Wi-Fi
   name: Atomsenses
-  logo: /images/partners/atomsenses-logo.png
+  logo: https://img.thingsboard.io/partners/atomsenses-logo.png
   site:
     href: https://www.atomsenses.com/
   links:
@@ -15,7 +30,7 @@
     - NB-IoT
     - LTE-M
   name: Efento
-  logo: /images/partners/efento.png
+  logo: https://img.thingsboard.io/partners/efento.png
   site:
     href: https://getefento.com/
   links:
@@ -28,7 +43,7 @@
     - LTE-M
     - Wi-Fi
   name: Teltonika Networks
-  logo: /images/partners/teltonika-networks.png
+  logo: https://img.thingsboard.io/partners/teltonika-networks.png
   site:
     href: https://teltonika-networks.com/?utm_source=iotplatform&utm_medium=referral&utm_content=thingsboard
   links:
@@ -40,7 +55,7 @@
     - Bluetooth LE
     - Wi-Fi
   name: Espressif Systems
-  logo: /images/partners/espressif.svg
+  logo: https://img.thingsboard.io/partners/espressif.svg
   site:
     href: https://www.espressif.com/
   links:
@@ -55,7 +70,7 @@
     - Wi-Fi
     - Bluetooth LE
   name: Elastel
-  logo: /images/partners/elastel-logo.png
+  logo: https://img.thingsboard.io/partners/elastel-logo.png
   site:
     href: https://www.elastel.com/
   links:
@@ -67,7 +82,7 @@
     - LTE-M
     - Wirepas
   name: Haltian
-  logo: /images/partners/haltian-logo.png
+  logo: https://img.thingsboard.io/partners/haltian-logo.png
   site:
     href: https://haltian.com/
   links:
@@ -82,25 +97,27 @@
     - Sigfox
     - Wi-Fi
   name: Seeed Technology Co.,Ltd.
-  logo: /images/partners/seeed.png
+  logo: https://img.thingsboard.io/partners/seeed.png
   site:
     href: https://www.seeedstudio.com/
+  showcase:
+    href: https://seeed-projects.github.io/Tutorial-of-AI-Kit-with-Raspberry-Pi-From-Zero-to-Hero/docs/Chapter_6-RaspberryPi_and_AIoT/Car_Park_Solution_Management_with_Thingsboard/
   links:
     0:
       label: Integration guide
       href: "/docs/samples/raspberry/grove/"
     1:
-      label: Connect reComputer R1000 to ThingsBoard
+      label: reComputer R1000
       href: "/docs/edge/devices-library/recomputer-r1000/"
     2:
-      label: Connect reComputer R1100 to ThingsBoard
+      label: reComputer R1100
       href: "/docs/edge/devices-library/recomputer-r1100/"
   description: Whether you are a developer, technical supplier, or industry player, we provide products and services for your IoT needs.
 - type:
     - Bluetooth LE
     - LoRaWAN
   name: Lansitec
-  logo: /images/partners/lansitec-logo.svg
+  logo: https://img.thingsboard.io/partners/lansitec-logo.svg
   site:
     href: https://www.lansitec.com/
   links:
@@ -111,24 +128,24 @@
 - type:
     - LoRaWAN
   name: Milesight
-  logo: /images/partners/milesight-logo.png
+  logo: https://img.thingsboard.io/partners/milesight-logo.png
   site:
     href: https://www.milesight.com/
   links:
     0:
-      label: Connect UG56 LoRaWAN® Gateway to ThingsBoard
+      label: UG56 LoRaWAN® Gateway
       href: "/docs/pe/devices-library/ug56-lorawan-gateway/"
     1:
-      label: Connect UG65 LoRaWAN® Semi-Industrial Gateway to ThingsBoard
+      label: UG65 LoRaWAN® Semi-Industrial Gateway
       href: "/docs/pe/devices-library/ug65-lorawan-gateway/"
     2:
-      label: Connect UG67 LoRaWAN® Gateway to ThingsBoard
+      label: UG67 LoRaWAN® Gateway
       href: "/docs/pe/devices-library/ug67-lorawan-gateway/"
     3:
-      label: Connect WS101 LoRaWAN® Smart Button to ThingsBoard
+      label: WS101 LoRaWAN® Smart Button
       href: "/docs/pe/devices-library/ws101-smart-button/"
     4:
-      label: Connect WS202 PIR & Light LoRaWAN® Sensor to ThingsBoard
+      label: WS202 PIR & Light LoRaWAN® Sensor
       href: "/docs/pe/devices-library/ws202-pir-and-light-sensor/"
     5:
       label: Thingsboard-Milesight LoRaWAN Gateways&Devices Integration
@@ -138,7 +155,7 @@
     - NB-IoT
     - LoRaWAN
   name: Smartico
-  logo: /images/partners/smartico.png
+  logo: https://img.thingsboard.io/partners/smartico.png
   site:
     href: https://www.smartico.biz/en/
   links:
@@ -166,7 +183,7 @@
     - LTE-M
     - Wi-Fi
   name: Digital Communications Technologies, LLC.
-  logo: /images/partners/DCT-Logo-Standard-Color-01.png
+  logo: https://img.thingsboard.io/partners/DCT-Logo-Standard-Color-01.png
   site:
     href: https://www.digitalcomtech.com/
   links:
@@ -179,7 +196,7 @@
     - Wi-Fi
     - LTE-M
   name: MOKO SMART
-  logo: /images/partners/moko-smart-logo.png
+  logo: https://img.thingsboard.io/partners/moko-smart-logo.png
   site:
     href: https://www.mokosmart.com/
   links:
@@ -196,7 +213,7 @@
     - LTE-M
     - NB-IoT
   name: Digicom B810 Spa
-  logo: /images/partners/digicom-logo.png
+  logo: https://img.thingsboard.io/partners/digicom-logo.png
   site:
     href: https://www.digicom.it/
   links:
@@ -209,7 +226,7 @@
     - Wi-Fi
     - NB-IoT
   name: Nettra
-  logo: /images/partners/nettra.png
+  logo: https://img.thingsboard.io/partners/nettra.png
   site:
     href: https://nettra.tech/
   links:
@@ -218,20 +235,9 @@
       href: "/docs/samples/nettrartu+/rtu_temp_sensor/"
   description: We provide comprehensive hardware and software IoT solutions.
 - type:
-    - Wi-Fi
-  name: Things On Edge
-  logo: /images/partners/things-on-edge.svg
-  site:
-    href: https://thingsonedge.com/
-  links:
-    0:
-      label: Integration guide
-      href: "/docs/samples/cricket-wifi/cricket-wifi/"
-  description: Things On Edge designs easy to use, ultra low power Wi-Fi modules.
-- type:
     - Ethernet
   name: Solandtec
-  logo: /images/partners/solandtec.png
+  logo: https://img.thingsboard.io/partners/solandtec.png
   site:
     href: https://solandtec.com/
   links:
@@ -244,7 +250,7 @@
     - LTE-M
     - NB-IoT
   name: Actility
-  logo: /images/partners/actility.png
+  logo: https://img.thingsboard.io/partners/actility.png
   site:
     href: https://www.actility.com/
   links:
@@ -257,7 +263,7 @@
     - LTE-M
     - Bluetooth LE
   name: SODAQ
-  logo: /images/partners/sodaq.jpg
+  logo: https://img.thingsboard.io/partners/sodaq.jpg
   site:
     href: https://sodaq.com/
   links:
@@ -269,15 +275,15 @@
     - LoRaWAN
     - Bluetooth LE
   name: SensiEDGE
-  logo: /images/partners/sensiedge_logo.png
+  logo: https://img.thingsboard.io/partners/sensiedge_logo.png
   site:
     href: https://www.sensiedge.com/
   links:
     0:
-      label: Getting Started SensiLoRa 2.0 V1.2
+      label: SensiLoRa 2.0 V1.2
       href: "/docs/samples/sensiedge/getting_started_sensiLoRa.pdf"
     1:
-      label: Connect SensiBLE 1.0 & 2.1 to ThingsBoard
+      label: SensiBLE 1.0 & 2.1
       href: "/docs/samples/sensiedge/connect_sensi_ble.pdf"
   description: SensiEDGE IoT SoM is a fully customisable solution for developers who want to focus on their own applications and core competencies rather than the underlying hardware platform or production logistics when creating products for the IoT.
 - type:
@@ -287,7 +293,7 @@
     - CAT-M/NB
     - NB-IoT
   name: Shenzhen Dragino Technology Development  Co.,Ltd
-  logo: /images/partners/dragino-logo.png
+  logo: https://img.thingsboard.io/partners/dragino-logo.png
   site:
     href: http://www.dragino.com/
   links:
@@ -300,21 +306,21 @@
     - Bluetooth LE
     - Wi-Fi
   name: ioThings
-  logo: /images/partners/iothings-logo.png
+  logo: https://img.thingsboard.io/partners/iothings-logo.png
   site:
     href: https://iotracker.eu/
   links:
     0:
-      label: Connect ioTracker Multi-sensor tracker to ThingsBoard
+      label: ioTracker Multi-sensor tracker
       href: "https://thingsboard.io/docs/pe/devices-library/iotracker-multi-sensor-tracker/"
     1:
-      label: Connect ioButton Panic button to ThingsBoard
+      label: ioButton Panic button
       href: "https://thingsboard.io/docs/pe/devices-library/iobutton-panic-button/"
   description: ioThings, the company behind the ioTracker and ioButton, is a Dutch company and was established in 2016 by three technology enthusiasts with a professional background in electronics, security, IT and telecom. We mainly operate in the domain of emergency response, together with indoor and outdoor localisation. Our devices are highly and easy configurable to make sure it can be finetuned for a lot of use cases.
 - type:
     - GSM/GPRS
   name: DECODE
-  logo: /images/partners/decode.png
+  logo: https://img.thingsboard.io/partners/decode.png
   site:
     href: https://www.decode.rs/
   links:
@@ -325,7 +331,7 @@
 - type:
     - LoRaWAN
   name: TEKTELIC Communications Inc.
-  logo: /images/partners/tektelic.png
+  logo: https://img.thingsboard.io/partners/tektelic.png
   site:
     href: https://tektelic.com/
   links: {}
@@ -336,7 +342,7 @@
     - Wi-Fi
     - Ethernet
   name: National Control Devices, LLC
-  logo: /images/partners/ncd-logo.png
+  logo: https://img.thingsboard.io/partners/ncd-logo.png
   site:
     href: https://ncd.io/
   links:
@@ -349,7 +355,7 @@
     - Bluetooth LE
     - Wi-Fi
   name: Netvox
-  logo: /images/partners/netvox-logo.jpg
+  logo: https://img.thingsboard.io/partners/netvox-logo.jpg
   site:
     href: http://www.netvox.com.tw/
   links:
@@ -361,7 +367,7 @@
     - NB-IoT
     - LTE-M
   name: AKKR8
-  logo: /images/partners/akkr8.png
+  logo: https://img.thingsboard.io/partners/akkr8.png
   site:
     href: https://www.akkr8.io/
   links: {}
@@ -369,7 +375,7 @@
 - type:
     - Wi-Fi
   name: ROLTEK
-  logo: /images/partners/roltek_logo_dark.png
+  logo: https://img.thingsboard.io/partners/roltek_logo_dark.png
   site:
     href: https://www.roltek.com.tr/
   links:
@@ -380,7 +386,7 @@
 - type:
     - Modbus
   name: Kernel Sistemi
-  logo: /images/partners/kernel_logo.jpg
+  logo: https://img.thingsboard.io/partners/kernel_logo.jpg
   site:
     href: https://www.kernelgroup.it/
   links:
@@ -392,7 +398,7 @@
     - Modbus
     - LoRaWAN
   name: KingPigeon Technology Co., Ltd.
-  logo: /images/partners/kingpigeon.png
+  logo: https://img.thingsboard.io/partners/kingpigeon.png
   site:
     href: https://www.iot-solution.com/
   links:
@@ -405,7 +411,7 @@
     - LTE-M
     - Wi-Fi
   name: Senquip
-  logo: /images/partners/senquip.png
+  logo: https://img.thingsboard.io/partners/senquip.png
   site:
     href: https://www.senquip.com
   links:
@@ -419,7 +425,7 @@
     - Wi-Fi
     - Ethernet
   name: Sixfab, Inc.
-  logo: /images/partners/sixfab-logo.png
+  logo: https://img.thingsboard.io/partners/sixfab-logo.png
   site:
     href: https://sixfab.com/alpon
   links:
@@ -433,7 +439,7 @@
     - LTE-M
     - LoRaWAN
   name: Dusun
-  logo: /images/partners/dusun.png
+  logo: https://img.thingsboard.io/partners/dusun.png
   site:
     href: https://www.dusuniot.com/
   links:
@@ -441,6 +447,24 @@
       label: Integration guide
       href: "/docs/pe/devices-library/dsgw-210-iot-gateway-hub/"
   description: Dusun provides various kinds of gateways, hardware products and IOT service
+- type:
+    - LoRaWAN
+  name: Makerfabs
+  carousel: true
+  logo: https://img.thingsboard.io/partners/makerfabs-logo.png
+  site:
+    href: https://www.makerfabs.com/agrosense
+  links:
+    0:
+      label: How to connect AgroSense Air Temperature and Humidity Sensor to ThingsBoard?
+      href: "/docs/devices-library/air-temperature-and-humidity-sensor/"
+    1:
+      label: How to connect AgroSense Positioning Water Leak Sensor to ThingsBoard?
+      href: "/docs/devices-library/positioning-water-leak-sensor/"
+    2:
+      label: How to connect AgroSense Soil Moisture Sensor to ThingsBoard?
+      href: "/docs/devices-library/soil-moisture-sensor/"
+  description: Makerfabs is a professional open-source hardware provider based in Shenzhen, China, offering end-to-end support from concept design, prototyping, small-batch manufacturing, to full-scale production. We are especially experienced in LoRa and LoRaWAN technologies and have helped many clients realize custom IoT solutions across agriculture, smart cities, and industrial monitoring. To better serve these industries, we have established the AgroSense brand – a comprehensive line of LoRaWAN sensors, designed for reliability, adaptability, and ease of integration.
 - type:
     - Ethernet
     - Wi-Fi
@@ -451,7 +475,7 @@
     - CAT-M/NB
     - NB-IoT
   name: MikroTik
-  logo: /images/partners/mikrotik-logo.svg
+  logo: https://img.thingsboard.io/partners/mikrotik-logo.svg
   site:
     href: https://mikrotik.com/
   links:
@@ -468,14 +492,14 @@
       label: Container - ThingsBoard MQTT/HTTP server
       href: https://help.mikrotik.com/docs/spaces/ROS/pages/166920348/Container+-+ThingsBoard+MQTT+HTTP+server
     4:
-      label: Sending temperature readings from the TG-BT5-OUT tag to ThingsBoard
+      label: TG-BT5-OUT tag
       href: https://help.mikrotik.com/docs/spaces/UM/pages/143327239/Sending+temperature+readings+from+the+TG-BT5-OUT+tag+to+ThingsBoard
   description: MikroTik is an EU-based leader in networking hardware and software, providing high-performance routers, switches, 5G and wireless solutions. Our technology powers ISPs, enterprises, and IoT networks—enabling everything from asset tracking to smart city integration and adding wireless connectivity to legacy sensors. We focus on efficiency, security, and scalability to build reliable, cost-effective networks worldwide.
 - type:
     - NB-IoT
     - LTE-M
   name: monoZ
-  logo: /images/partners/monoz-logo.png
+  logo: https://img.thingsboard.io/partners/monoz-logo.png
   site:
     href: https://monoz.io/
   links:
@@ -489,15 +513,15 @@
     - Wi-Fi
     - Ethernet
   name: Temco Controls
-  logo: /images/partners/temco-controls-logo.jpg
+  logo: https://img.thingsboard.io/partners/temco-controls-logo.jpg
   site:
     href: https://temcocontrols.com/
   links:
     0:
-      label: Connect Temco T3E-6CT to ThingsBoard
+      label: Temco T3E-6CT
       href: /docs/devices-library/temco-controls-t3e-6ct-and-hum-w1/
     1:
-      label: Connect Temco Tstat10 to ThingsBoard
+      label: Temco Tstat10
       href: /docs/devices-library/temco-controls-tstat-10/
   description: Temco Controls Ltd. specializes in manufacturing low-cost sensors and controllers for the HVAC industry. We proudly provide solutions with no license or recurring fees to our customers from all over the world. Both our software and device firmware are open source, making us one of the most open building automation systems on the market. We make collaboration simple and straightforward with easy purchases on the web and open, long-term support on the forum.
 - type:
@@ -509,7 +533,7 @@
     - GSM/GPRS
     - Modbus
   name: EXXN
-  logo: /images/partners/exxn.jpg
+  logo: https://img.thingsboard.io/partners/exxn.jpg
   site:
     href: https://exxn.es/en/
   links:
@@ -521,7 +545,7 @@
     - NB-IoT
     - LTE-M
   name: Fusion DAQ
-  logo: /images/partners/FusionDAQ-Nav-Logo.png
+  logo: https://img.thingsboard.io/partners/FusionDAQ-Nav-Logo.png
   site:
     href: https://fusiondaq.com/
   links:
@@ -534,7 +558,7 @@
     - LoRaWAN
     - LTE-M
   name: Yobiiq B.V.
-  logo: /images/partners/Yobiiq_Logo_Primary.svg
+  logo: https://img.thingsboard.io/partners/Yobiiq_Logo_Primary.svg
   site:
     href: https://yobiiq.com/
   links:
@@ -549,7 +573,7 @@
     - Wi-Fi
     - Ethernet
   name: YuDash
-  logo: /images/partners/yudash_logo.png
+  logo: https://img.thingsboard.io/partners/yudash_logo.png
   site:
     href: https://www.yudash.com/
   links:

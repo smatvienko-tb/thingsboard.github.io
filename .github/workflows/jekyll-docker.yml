@@ -33,6 +33,7 @@ jobs:
             v1-${{ runner.os }}-jekyll-
 
       - run: mkdir -p ${{ github.workspace }}/.jekyll-cache
+      - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
       - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       
       - run: echo "::debug::workspace is ${{ github.workspace }}"
@@ -46,8 +47,10 @@ jobs:
           docker run \
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
           -e "PAGES_REPO_NWO=${{ github.repository }}" \
-          jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
+          jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build && ls -lah /srv/jekyll/.jekyll-cache"
 
+      - run: ls -lah ${{ github.workspace }}/.jekyll-cache
+      - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
       - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       
       - name: Save branch-specific Jekyll cache

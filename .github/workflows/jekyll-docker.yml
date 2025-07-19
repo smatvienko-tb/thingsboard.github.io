@@ -26,6 +26,8 @@ jobs:
             v1-${{ runner.os }}-jekyll-${{ github.ref }}
             v1-${{ runner.os }}-jekyll-
       
+      - run: ls -lah ${{ github.workspace }}/.jekyll-cache
+      
       - run: echo "::debug::workspace is ${{ github.workspace }}"
       - run: ls -lah ${{ github.workspace }}
       - run: chmod -R 777 ${{ github.workspace }}
@@ -38,6 +40,8 @@ jobs:
           -e "PAGES_REPO_NWO=${{ github.repository }}" \
           jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
 
+      - run: ls -lah ${{ github.workspace }}/.jekyll-cache
+      
       - name: Save branch-specific Jekyll cache
         if: steps.cache-jekyll.outputs.cache-hit != 'true' || steps.cache-jekyll.outputs.cache-primary-key != steps.cache-jekyll.outputs.cache-matched-key
         uses: actions/cache/save@v4

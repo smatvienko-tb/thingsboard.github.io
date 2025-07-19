@@ -29,7 +29,7 @@ jobs:
           path: ${{ github.workspace }}/.jekyll-metadata
           key: ${{ steps.vars.outputs.key }}
           restore-keys: |
-            v1md-${{ runner.os }}-jekyll-${{ github.ref }}
+            v1md-linux-jekyll-${{ github.ref }}
             v1md-${{ runner.os }}-jekyll-
 
       # - run: mkdir -p ${{ github.workspace }}/.jekyll-cache

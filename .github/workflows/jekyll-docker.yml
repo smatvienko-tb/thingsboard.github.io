@@ -39,13 +39,14 @@ jobs:
       # - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       
       - run: ls -lah ${{ github.workspace }}/.jekyll-metadata || true
+      - run: ls -lah ${{ github.workspace }}/_site || true
       
       - run: echo "::debug::workspace is ${{ github.workspace }}"
       - run: ls -lah ${{ github.workspace }}
       - run: chmod -R 777 ${{ github.workspace }}
       # - run: ls -lah ${{ github.workspace }}
       # - run: whoami
-      - run: printenv
+      # - run: printenv
       
       - name: Build the site in the jekyll/builder container
         run: |

@@ -17,7 +17,7 @@ jobs:
     - run: echo "::debug::workspace is ${{ github.workspace }}"
     - run: echo "::debug::pwd is $(pwd)"
     - run: ls -lah ${{ github.workspace }}
-    - run: sudo chown -R 1000:1000 ${{ github.workspace }}
+    - run: sudo chown -R ubuntu:ubuntu ${{ github.workspace }}
     - run: ls -lah ${{ github.workspace }}
     - run: whoami
     - name: Build the site in the jekyll/builder container

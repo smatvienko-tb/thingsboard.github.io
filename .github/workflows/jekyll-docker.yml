@@ -35,7 +35,8 @@ jobs:
       # - run: mkdir -p ${{ github.workspace }}/.jekyll-cache
       # - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
       # - run: ls -lah ${{ github.workspace }}/.jekyll-cache
-      - run: ls -lah ${{ github.workspace }}/.jekyll-metadata 2>/dev/null
+      
+      - run: [ -e ${{ github.workspace }}/.jekyll-metadata ] && ls -lah ${{ github.workspace }}/.jekyll-metadata
       
       - run: echo "::debug::workspace is ${{ github.workspace }}"
       - run: ls -lah ${{ github.workspace }}
@@ -55,7 +56,7 @@ jobs:
       # - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
       # - run: ls -lah ${{ github.workspace }}/.jekyll-cache
 
-      - run: ls -lah ${{ github.workspace }}/.jekyll-metadata 2>/dev/null
+      - run: [ -e ${{ github.workspace }}/.jekyll-metadata ] && ls -lah ${{ github.workspace }}/.jekyll-metadata
       
       - name: Save branch-specific Jekyll cache
         if: steps.cache-jekyll.outputs.cache-hit != 'true' || steps.vars.outputs.key != steps.cache-jekyll.outputs.cache-matched-key

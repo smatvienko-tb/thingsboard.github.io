@@ -15,13 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Define cache key
+        id: vars
+        run: echo "key=V0-linux-jekyll-${{ github.ref }}-${{ hashFiles('**/*.{md,html,yml,json,scss}') }}" >> $GITHUB_OUTPUT
+
       # Step 1: Restore cache
       - name: Restore Jekyll cache
         id: cache-jekyll
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/.jekyll-cache
-          key: v1-${{ runner.os }}-jekyll-${{ github.ref }}-${{ hashFiles('**/*.{md,html,yml,json,scss}') }}
+          key: ${{ steps.vars.outputs.key }}
           restore-keys: |
             v1-${{ runner.os }}-jekyll-${{ github.ref }}
             v1-${{ runner.os }}-jekyll-
@@ -34,18 +38,18 @@ jobs:
       - run: chmod -R 777 ${{ github.workspace }}
       - run: ls -lah ${{ github.workspace }}
       - run: whoami
-      - name: Build the site in the jekyll/builder container
-        run: |
-          docker run \
-          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-          -e "PAGES_REPO_NWO=${{ github.repository }}" \
-          jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
+      # - name: Build the site in the jekyll/builder container
+      #   run: |
+      #     docker run \
+      #     -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+      #     -e "PAGES_REPO_NWO=${{ github.repository }}" \
+      #     jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
 
       - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       
       - name: Save branch-specific Jekyll cache
-        if: steps.cache-jekyll.outputs.cache-hit != 'true' || steps.cache-jekyll.outputs.cache-primary-key != steps.cache-jekyll.outputs.cache-matched-key
+        if: steps.cache-jekyll.outputs.cache-hit != 'true' || steps.vars.outputs.key != steps.cache-jekyll.outputs.cache-matched-key
         uses: actions/cache/save@v4
         with:
           path: .jekyll-cache
-          key: ${{ steps.cache-jekyll.outputs.cache-primary-key }}
+          key: ${{ steps.vars.outputs.key }}

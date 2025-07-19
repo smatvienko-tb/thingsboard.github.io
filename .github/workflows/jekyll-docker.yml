@@ -17,8 +17,10 @@ jobs:
 
       - name: Define cache key
         id: vars
-        run: echo "key=v1-linux-jekyll-${{ github.ref }}-${{ hashFiles('**/*.{md,html,yml,json,scss}') }}" >> $GITHUB_OUTPUT
-
+        run: echo "key=v0-linux-jekyll-${{ github.ref }}-${{ env.HASH }}" >> $GITHUB_OUTPUT
+        env:
+          HASH: ${{ hashFiles('**/*.{md,html,yml,json,scss}') }}
+    
       # Step 1: Restore cache
       - name: Restore Jekyll cache
         id: cache-jekyll
@@ -36,14 +38,14 @@ jobs:
       - run: echo "::debug::workspace is ${{ github.workspace }}"
       - run: ls -lah ${{ github.workspace }}
       - run: chmod -R 777 ${{ github.workspace }}
-      - run: ls -lah ${{ github.workspace }}
+      # - run: ls -lah ${{ github.workspace }}
       - run: whoami
-      - name: Build the site in the jekyll/builder container
-        run: |
-          docker run \
-          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-          -e "PAGES_REPO_NWO=${{ github.repository }}" \
-          jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
+      # - name: Build the site in the jekyll/builder container
+      #   run: |
+      #     docker run \
+      #     -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+      #     -e "PAGES_REPO_NWO=${{ github.repository }}" \
+      #     jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
 
       - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       

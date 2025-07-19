@@ -19,7 +19,7 @@ jobs:
         id: vars
         run: echo "key=v0-linux-jekyll-${{ github.ref }}-${{ env.HASH }}" >> $GITHUB_OUTPUT
         env:
-          HASH: ${{ hashFiles('**/*.{md,html,yml,json,scss}') }}
+          HASH: ${{ hashFiles('**/*') }}
     
       # Step 1: Restore cache
       - name: Restore Jekyll cache

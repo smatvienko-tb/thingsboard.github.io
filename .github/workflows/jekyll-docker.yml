@@ -25,4 +25,4 @@ jobs:
         docker run \
         -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
         -e "PAGES_REPO_NWO=${{ github.repository }}" \
-        jekyll/builder:latest /bin/bash -c "whoami && jekyll build"
+        jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"

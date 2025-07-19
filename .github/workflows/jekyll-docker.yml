@@ -16,6 +16,7 @@ jobs:
     - uses: actions/checkout@v4
     - run: echo "::debug::workspace is ${{ github.workspace }}"
     - run: echo "::debug::pwd is $(pwd)"
+    - run: ls -lah ${{ github.workspace }}
     - name: Build the site in the jekyll/builder container
       run: |
         docker run \

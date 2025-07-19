@@ -25,7 +25,8 @@ jobs:
           restore-keys: |
             v1-${{ runner.os }}-jekyll-${{ github.ref }}
             v1-${{ runner.os }}-jekyll-
-      
+
+      - run: mkdir -p ${{ github.workspace }}/.jekyll-cache
       - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       
       - run: echo "::debug::workspace is ${{ github.workspace }}"

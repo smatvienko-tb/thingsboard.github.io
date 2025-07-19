@@ -39,13 +39,14 @@ jobs:
       - run: ls -lah ${{ github.workspace }}
       - run: chmod -R 777 ${{ github.workspace }}
       # - run: ls -lah ${{ github.workspace }}
-      - run: whoami
-      # - name: Build the site in the jekyll/builder container
-      #   run: |
-      #     docker run \
-      #     -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-      #     -e "PAGES_REPO_NWO=${{ github.repository }}" \
-      #     jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
+      # - run: whoami
+      
+      - name: Build the site in the jekyll/builder container
+        run: |
+          docker run \
+          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+          -e "PAGES_REPO_NWO=${{ github.repository }}" \
+          jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
 
       - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       

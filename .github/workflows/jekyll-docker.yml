@@ -26,7 +26,9 @@ jobs:
         id: cache-jekyll
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/.jekyll-metadata
+          path: |
+            ${{ github.workspace }}/.jekyll-metadata
+            ${{ github.workspace }}/_site
           key: ${{ steps.vars.outputs.key }}
           restore-keys: |
             v1md-${{ runner.os }}-jekyll-${{ github.ref }}
@@ -50,7 +52,7 @@ jobs:
           docker run \
           -v ${{ github.workspace }}:/srv/jekyll \
           -e "PAGES_REPO_NWO=${{ github.repository }}" \
-          jekyll/builder:latest /bin/bash -c "whoami && jekyll -v && jekyll build --incremental"
+          jekyll/builder:latest /bin/bash -c "whoami && jekyll -v && jekyll build"
 
       # - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       # - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
@@ -62,5 +64,7 @@ jobs:
         if: steps.cache-jekyll.outputs.cache-hit != 'true' || steps.vars.outputs.key != steps.cache-jekyll.outputs.cache-matched-key
         uses: actions/cache/save@v4
         with:
-          path: ${{ github.workspace }}/.jekyll-metadata
+          path: |
+            ${{ github.workspace }}/.jekyll-metadata
+            ${{ github.workspace }}/_site
           key: ${{ steps.vars.outputs.key }}

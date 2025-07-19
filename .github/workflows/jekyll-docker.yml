@@ -17,7 +17,7 @@ jobs:
 
       - name: Define cache key
         id: vars
-        run: echo "key=v1-linux-jekyll-${{ github.ref }}-${{ env.HASH }}" >> $GITHUB_OUTPUT
+        run: echo "key=v1md-linux-jekyll-${{ github.ref }}-${{ env.HASH }}" >> $GITHUB_OUTPUT
         env:
           HASH: ${{ hashFiles('**/*') }}
     
@@ -26,15 +26,16 @@ jobs:
         id: cache-jekyll
         uses: actions/cache@v4
         with:
-          path: ${{ github.workspace }}/.jekyll-cache
+          path: ${{ github.workspace }}/.jekyll-metadata
           key: ${{ steps.vars.outputs.key }}
           restore-keys: |
-            v1-${{ runner.os }}-jekyll-${{ github.ref }}
-            v1-${{ runner.os }}-jekyll-
+            v1md-${{ runner.os }}-jekyll-${{ github.ref }}
+            v1md-${{ runner.os }}-jekyll-
 
-      - run: mkdir -p ${{ github.workspace }}/.jekyll-cache
-      - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
-      - run: ls -lah ${{ github.workspace }}/.jekyll-cache
+      # - run: mkdir -p ${{ github.workspace }}/.jekyll-cache
+      # - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
+      # - run: ls -lah ${{ github.workspace }}/.jekyll-cache
+      - run: ls -lah ${{ github.workspace }}/.jekyll-metadata 2>/dev/null
       
       - run: echo "::debug::workspace is ${{ github.workspace }}"
       - run: ls -lah ${{ github.workspace }}
@@ -46,17 +47,19 @@ jobs:
       - name: Build the site in the jekyll/builder container
         run: |
           docker run \
-          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
+          -v ${{ github.workspace }}:/srv/jekyll \
           -e "PAGES_REPO_NWO=${{ github.repository }}" \
-          jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build --incremental && ls -lah /srv/jekyll/.jekyll-cache"
+          jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll -v && jekyll build --incremental && ls -lah /srv/jekyll/.jekyll-cache"
 
-      - run: ls -lah ${{ github.workspace }}/.jekyll-cache
-      - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
-      - run: ls -lah ${{ github.workspace }}/.jekyll-cache
+      # - run: ls -lah ${{ github.workspace }}/.jekyll-cache
+      # - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache
+      # - run: ls -lah ${{ github.workspace }}/.jekyll-cache
+
+      - run: ls -lah ${{ github.workspace }}/.jekyll-metadata 2>/dev/null
       
       - name: Save branch-specific Jekyll cache
         if: steps.cache-jekyll.outputs.cache-hit != 'true' || steps.vars.outputs.key != steps.cache-jekyll.outputs.cache-matched-key
         uses: actions/cache/save@v4
         with:
-          path: .jekyll-cache
+          path: ${{ github.workspace }}/.jekyll-metadata
           key: ${{ steps.vars.outputs.key }}

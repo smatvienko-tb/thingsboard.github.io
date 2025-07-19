@@ -14,6 +14,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      # Step 1: Restore cache
+      - name: Restore Jekyll cache
+        id: cache-jekyll
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.jekyll-cache
+          key: v1-${{ runner.os }}-jekyll-${{ github.ref }}-${{ hashFiles('**/*.{md,html,yml,json,scss}') }}
+          restore-keys: |
+            v1-${{ runner.os }}-jekyll-${{ github.ref }}
+            v1-${{ runner.os }}-jekyll-
+      
       - run: echo "::debug::workspace is ${{ github.workspace }}"
       - run: ls -lah ${{ github.workspace }}
       - run: chmod -R 777 ${{ github.workspace }}
@@ -25,3 +37,10 @@ jobs:
           -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
           -e "PAGES_REPO_NWO=${{ github.repository }}" \
           jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
+
+      - name: Save branch-specific Jekyll cache
+        if: steps.cache-jekyll.outputs.cache-hit != 'true' || steps.cache-jekyll.outputs.cache-primary-key != steps.cache-jekyll.outputs.cache-matched-key
+        uses: actions/cache/save@v4
+        with:
+          path: .jekyll-cache
+          key: ${{ steps.cache-jekyll.outputs.cache-primary-key }}

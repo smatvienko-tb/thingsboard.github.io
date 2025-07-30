@@ -53,7 +53,7 @@ jobs:
           docker run \
           -v ${{ github.workspace }}:/srv/jekyll \
           -e "PAGES_REPO_NWO=${{ github.repository }}" \
-          jekyll/builder:latest /bin/bash -c "whoami && jekyll -v && jekyll build --verbose"
+          jekyll/builder:latest /bin/bash -c "whoami && jekyll -v && jekyll build --config _config.yml,_config_dev.yml"
 
       # - run: ls -lah ${{ github.workspace }}/.jekyll-cache
       # - run: chmod -R 777 ${{ github.workspace }}/.jekyll-cache

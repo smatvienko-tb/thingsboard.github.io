@@ -1,27 +1,21 @@
-name: Jekyll site CI
+name: build
 
 on:
   push:
     branches: [ "master", "action/release/4.1-action-speedup" ]
-  pull_request:
-    branches: [ "master" ]
 
 jobs:
   build:
 
-    # runs-on: ubuntu-latest
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
       - run: echo "::debug::workspace is ${{ github.workspace }}"
-      - run: ls -lah ${{ github.workspace }}
-      - run: chmod -R 777 ${{ github.workspace }}
-      - run: ls -lah ${{ github.workspace }}
-      - run: whoami
-      - name: Build the site in the jekyll/builder container
+      - name: Purge Cloudflare Cache
+        if: github.ref == 'refs/heads/action/release/4.1-action-speedup'
         run: |
-          docker run \
-          -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-          -e "PAGES_REPO_NWO=${{ github.repository }}" \
-          jekyll/builder:latest /bin/bash -c "whoami && ls -lah /srv/jekyll && jekyll build"
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+          -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          --data '{"purge_everything":true}'
